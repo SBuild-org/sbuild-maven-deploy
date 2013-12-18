@@ -1,0 +1,49 @@
+= SBuild Adept Plugin
+
+This SBuild plugin provides targets to deploy artifacts with the Maven. E.g. you can use it to deploy to Nexus OSS.
+
+== Installation
+
+There is currently no release of this plugin. You need to build it by yourself.
+
+== Building from Source
+
+You need a recent version of SBuild.
+
+----
+git clone https://github.com/SBuild-org/maven-deploy.git
+cd sbuild-sbuild-plugin/org.sbuild.plugins.mavendeploy
+sbuild all
+----
+
+You will find the built jar in the directory `org.sbuild.plugins.mavendeploy/target`.
+
+== Configuration
+
+All configurable properties are documented via ScalaDoc. See file MavenDeploy.
+
+== Usage Example
+
+[source,scala]
+----
+import de.tototec.sbuild._
+
+@version("0.7.0")
+@classpath("org.sbuild.plugins.mavendeploy.jar")
+class SBuild(implicit _project: Project) {
+
+  import org.sbuild.plugins.mavendeploy._
+
+  Plugin[MavenDeploy] configure { p =>
+    p.artifact = "org.example:hello:1.0.0"
+  }
+
+}
+----
+
+----
+bash$ sbuild -l
+
+----
+
+To deploy the artifacts use the `maven-deploy` target.
