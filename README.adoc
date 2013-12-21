@@ -28,15 +28,15 @@ All configurable properties are documented via ScalaDoc. See file MavenDeploy.
 ----
 import de.tototec.sbuild._
 
-@version("0.7.0")
+@version("0.7.1")
 @classpath("org.sbuild.plugins.mavendeploy.jar")
 class SBuild(implicit _project: Project) {
 
   import org.sbuild.plugins.mavendeploy._
 
-  Plugin[MavenDeploy] configure { p =>
-    p.artifact = "org.example:hello:1.0.0"
-  }
+  Plugin[MavenDeploy] configure { _.copy(
+    artifact = "org.example:hello:1.0.0"
+  )}
 
 }
 ----
