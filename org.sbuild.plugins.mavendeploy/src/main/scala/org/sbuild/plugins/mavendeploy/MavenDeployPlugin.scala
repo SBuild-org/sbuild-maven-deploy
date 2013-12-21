@@ -96,7 +96,7 @@ class MavenDeployPlugin(implicit project: Project) extends Plugin[MavenDeploy] {
   <packaging>jar</packaging>
   <version>${deploy.version}</version>
   ${deploy.artifactName.map(n => s"<name>$n</name>").mkString}
-  ${deploy.description.map(d => s"<name>$d</name>").mkString}
+  ${deploy.description.map(d => s"<description>$d</description>").mkString}
   ${deploy.url.map(u => s"<url>$u</url>").mkString}
   ${
             deploy.licenses.map { l => s"<license><name>${l.name}</name><url>${l.url}</url><distribution>${l.distribution}</distribution></license>" }.
