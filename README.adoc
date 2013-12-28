@@ -53,4 +53,4 @@ bash$ sbuild -l
 
 ----
 
-To deploy the artifacts use the `maven-deploy` target.
+To deploy the artifacts use the `maven-deploy` target. It is essential, to run sbuild with the `-j 1` option, as the targets are interactive and require user input.
