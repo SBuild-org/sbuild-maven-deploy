@@ -5,7 +5,7 @@ import de.tototec.sbuild.addons.support.ForkSupport
 import java.io.PrintWriter
 
 class MavenDeployPlugin(implicit project: Project) extends Plugin[MavenDeploy] {
-  override def create(name: String): MavenDeploy = new MavenDeploy(name)
+  override def create(name: String): MavenDeploy = MavenDeploy()
   override def applyToProject(instances: Seq[(String, MavenDeploy)]): Unit =
     instances foreach {
       case (name, deploy) =>
@@ -16,6 +16,14 @@ class MavenDeployPlugin(implicit project: Project) extends Plugin[MavenDeploy] {
         if (deploy.artifactId == null) throw new ProjectConfigurationException(s"The 'artifactId' property was not set for plugin ${classOf[MavenDeploy].getName}.")
         if (deploy.version == null) throw new ProjectConfigurationException(s"The 'artifactId' property was not set for plugin ${classOf[MavenDeploy].getName}.")
         if (deploy.repository == null) throw new ProjectConfigurationException(s"The 'repository' property was not set for plugin ${classOf[MavenDeploy].getName}.")
+
+        deploy.repository.validator match {
+          case None =>
+          case Some(v) => v(deploy) match {
+            case Seq() =>
+            case msg => throw new ProjectConfigurationException("The following validation problems were detected:\n  - " + msg.mkString("\n  - "))
+          }
+        }
 
         val targetNamePart = if (name == "") "maven-deploy" else s"maven-deploy-$name"
         val workDir = Path("target") / targetNamePart

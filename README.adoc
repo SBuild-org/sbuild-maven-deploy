@@ -35,7 +35,14 @@ class SBuild(implicit _project: Project) {
   import org.sbuild.plugins.mavendeploy._
 
   Plugin[MavenDeploy] configure { _.copy(
-    artifact = "org.example:hello:1.0.0"
+    groupId = "org.example",
+    artifactId = "hello",
+    version = "1.0.0",
+    repository = Repository(id = "nexus", url = "http:://nexus.my-company.local/repo"),
+    files = Map(
+      "jar" -> "target/hello-1.0.0.jar",
+      sources -> "target/hello-1.0.0-sources.jar"
+    )
   )}
 
 }
