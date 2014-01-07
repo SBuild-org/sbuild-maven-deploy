@@ -1,6 +1,6 @@
 import de.tototec.sbuild._
 
-@version("0.7.0")
+@version("0.7.1")
 @classpath(
   "mvn:org.apache.ant:ant:1.8.4",
   "target/org.sbuild.plugins.mavendeploy-0.0.9000.jar"
