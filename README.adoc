@@ -4,11 +4,16 @@ This SBuild plugin provides targets to deploy artifacts with the Maven. E.g. you
 
 == Installation
 
-There is currently no release of this plugin. You need to build it by yourself.
+SBuild Maven Deploy Plugin can be downloaded from http://repo1.maven.org/maven2/org/sbuild/org.sbuild.plugins.mavendeploy/[Maven Central].
+
+To include it in you SBuild buildfile use the `@classpath` annotation:
+
+[source,scala]
+----
+@classpath("mvn:org.sbuild:org.sbuild.plugin.mavendeploy:0.1.0")
+----
 
 == Building from Source
-
-You need a recent version of SBuild.
 
 ----
 git clone https://github.com/SBuild-org/maven-deploy.git
@@ -20,7 +25,7 @@ You will find the built jar in the directory `org.sbuild.plugins.mavendeploy/tar
 
 == Configuration
 
-All configurable properties are documented via ScalaDoc. See file MavenDeploy.
+All configurable properties are documented via ScalaDoc. See file link:org.sbuild.plugins.mavendeploy/src/main/scala/org/sbuild/plugins/mavendeploy/MavenDeploy.scala[`MavenDeploy`].
 
 == Usage Example
 
@@ -54,3 +59,9 @@ bash$ sbuild -l
 ----
 
 To deploy the artifacts use the `maven-deploy` target. It is essential, to run sbuild with the `-j 1` option, as the targets are interactive and require user input.
+
+== Changelog
+
+=== SBuild Maven Deploy Plugin 0.1.0 - 2014-01-24
+
+* Initial Release.

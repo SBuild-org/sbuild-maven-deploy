@@ -5,14 +5,13 @@ import de.tototec.sbuild.ant.tasks._
 import de.tototec.sbuild._
 
 @version("0.7.1")
-// @classpath("../../sbuild-plugin/org.sbuild.plugins.sbuildplugin/target/org.sbuild.plugins.sbuildplugin-0.2.1.jar")
-@classpath("mvn:org.sbuild:org.sbuild.plugins.sbuildplugin:0.2.1")
+@classpath("mvn:org.sbuild:org.sbuild.plugins.sbuildplugin:0.2.2")
 class SBuild(implicit _project: Project) {
 
   Plugin[org.sbuild.plugins.sbuildplugin.SBuildPlugin] configure { _.copy(
     sbuildVersion = "0.7.1",
     pluginClass = "org.sbuild.plugins.mavendeploy.MavenDeploy",
-    pluginVersion = "0.0.9000"
+    pluginVersion = "0.1.0"
   )}
 
 }

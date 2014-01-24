@@ -1,15 +1,19 @@
 import de.tototec.sbuild._
+import de.tototec.sbuild.ant._
+import de.tototec.sbuild.ant.tasks._
 
 @version("0.7.1")
 @classpath(
   "mvn:org.apache.ant:ant:1.8.4",
-  "target/org.sbuild.plugins.mavendeploy-0.0.9000.jar"
+  "target/org.sbuild.plugins.mavendeploy-0.1.0.jar"
 )
 class SBuild(implicit _project: Project) {
 
   val namespace = "org.sbuild.plugins.mavendeploy"
-  val version = "0.0.9000"
+  val version = "0.1.0"
   val url = "https://github.com/SBuild-org/sbuild-maven-deploy"
+  val sourcesJar = s"target/${namespace}-${version}-sources.jar"
+  val sourcesDir = "src/main/scala"
 
   import org.sbuild.plugins.mavendeploy._
 
@@ -31,6 +35,13 @@ class SBuild(implicit _project: Project) {
       "javadoc" -> "target/fake.jar"
     )
   )}
+
+  Target(sourcesJar) dependsOn s"scan:${sourcesDir}" ~ "LICENSE.txt" exec { ctx: TargetContext =>
+    AntZip(destFile = ctx.targetFile.get, fileSets = Seq(
+      AntFileSet(dir = Path(sourcesDir)),
+      AntFileSet(file = Path("LICENSE.txt"))
+    ))
+  }
 
   Target("target/fake.jar") dependsOn "LICENSE.txt" exec { ctx: TargetContext =>
     import de.tototec.sbuild.ant._
