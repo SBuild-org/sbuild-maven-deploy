@@ -1,4 +1,4 @@
-= SBuild Adept Plugin
+= SBuild Maven Deploy Plugin
 
 This SBuild plugin provides targets to deploy artifacts with the Maven. E.g. you can use it to deploy to Nexus OSS.
 
