@@ -46,7 +46,7 @@ class SBuild(implicit _project: Project) {
     repository = Repository(id = "nexus", url = "http:://nexus.my-company.local/repo"),
     files = Map(
       "jar" -> "target/hello-1.0.0.jar",
-      sources -> "target/hello-1.0.0-sources.jar"
+      "sources" -> "target/hello-1.0.0-sources.jar"
     )
   )}
 
