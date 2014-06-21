@@ -11,7 +11,7 @@ class SBuild(implicit _project: Project) {
   Plugin[org.sbuild.plugins.sbuildplugin.SBuildPlugin] configure { _.copy(
     sbuildVersion = "0.7.1",
     pluginClass = "org.sbuild.plugins.mavendeploy.MavenDeploy",
-    pluginVersion = "0.1.0"
+    pluginVersion = "0.1.0.9000"
   )}
 
 }
