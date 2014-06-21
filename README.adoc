@@ -1,4 +1,8 @@
 = SBuild Maven Deploy Plugin
+:pluginversion: 0.1.0
+:sbuildversion: 0.7.1
+:toc:
+:toc-placement: preamble
 
 This SBuild plugin provides targets to deploy artifacts with the Maven. E.g. you can use it to deploy to Nexus OSS.
 
@@ -8,9 +12,9 @@ SBuild Maven Deploy Plugin can be downloaded from http://repo1.maven.org/maven2/
 
 To include it in you SBuild buildfile use the `@classpath` annotation:
 
-[source,scala]
+[source,scala,subs="attributes"]
 ----
-@classpath("mvn:org.sbuild:org.sbuild.plugins.mavendeploy:0.1.0")
+@classpath("mvn:org.sbuild:org.sbuild.plugins.mavendeploy:{pluginversion}")
 ----
 
 == Building from Source
@@ -29,12 +33,12 @@ All configurable properties are documented via ScalaDoc. See file link:org.sbuil
 
 == Usage Example
 
-[source,scala]
+[source,scala,subs="attributes"]
 ----
 import de.tototec.sbuild._
 
-@version("0.7.1")
-@classpath("org.sbuild.plugins.mavendeploy.jar")
+@version("{sbuildversion}")
+@classpath("mvn:org.sbuild:org.sbuild.plugins.mavendeploy:{pluginversion}")
 class SBuild(implicit _project: Project) {
 
   import org.sbuild.plugins.mavendeploy._
